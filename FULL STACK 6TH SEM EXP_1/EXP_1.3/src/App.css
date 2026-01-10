@@ -1,0 +1,106 @@
+/* Color Palette Definitions */
+/* Color Palette Definitions */
+.light {
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --text-main: #2d3436;
+  --text-sub: #636e72;
+  --accent: #0984e3;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --border: rgba(255, 255, 255, 0.3);
+}
+
+/* 🔥 PURE BLACK DARK MODE */
+.dark {
+  --bg-gradient: linear-gradient(135deg, #000000 0%, #000000 100%);
+  --card-bg: rgba(0, 0, 0, 0.85);
+  --text-main: #ffffff;
+  --text-sub: #bfbfbf;
+  --accent: #ffffff;
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Layout */
+.app-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Modern Glassmorphism Card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Content Elements */
+.status-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  background: var(--accent);
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.icon-sphere {
+  font-size: 50px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px var(--accent));
+}
+
+h1 {
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+p {
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Interactive Button */
+.theme-button {
+  background: var(--accent);
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.theme-button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.theme-button:active {
+  transform: scale(0.95);
+}

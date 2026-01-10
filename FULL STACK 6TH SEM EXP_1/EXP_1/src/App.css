@@ -1,0 +1,63 @@
+/* This container now covers 100% of the screen */
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4; /* This is the light grey background */
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+/* The White Card */
+.card {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Buttons Layout */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.plus {
+  background-color: #28a745;
+  color: white;
+}
+
+.minus {
+  background-color: #dc3545;
+  color: white;
+}
