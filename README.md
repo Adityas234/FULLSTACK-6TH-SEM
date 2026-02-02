@@ -1,3 +1,5 @@
+# EXP 2
+
 Designing UI using bootstrap components
 software use:-
 React 
@@ -22,3 +24,29 @@ React
 Bootstrap
 Web Browser
 ![alt text](image-3.png)
+
+
+# EXP 3
+EXP - 3.1
+Basic client side routing using react router
+Software : node.js, react, reactor-route dom 
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+EXP - 3.2
+Implement navigations link in spa using react router link
+Software : node.js, react, reactor-route dom
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+EXP - 3.3
+Create multipage SPA using client side routing
+Software : node.js, react, reactor-route dom
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+
+
