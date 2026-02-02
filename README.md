@@ -24,6 +24,7 @@ React
 Bootstrap
 Web Browser
 ![alt text](image-3.png)
+<<<<<<< HEAD
 
 
 # EXP 3
@@ -50,3 +51,5 @@ Software : node.js, react, reactor-route dom
 
 
 
+=======
+>>>>>>> f24d44b5c27d74b11d679f0ffe872cfcce9e8938
