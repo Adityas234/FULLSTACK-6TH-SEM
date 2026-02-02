@@ -1,5 +1,3 @@
-#  EXP - 2
-
 Designing UI using bootstrap components
 software use:-
 React 
@@ -24,6 +22,3 @@ React
 Bootstrap
 Web Browser
 ![alt text](image-3.png)
-
-
-# EXP 3
