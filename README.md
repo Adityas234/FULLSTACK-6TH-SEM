@@ -49,7 +49,3 @@ Software : node.js, react, reactor-route dom
 
 ![alt text](image-9.png)
 
-
-
-=======
->>>>>>> f24d44b5c27d74b11d679f0ffe872cfcce9e8938
