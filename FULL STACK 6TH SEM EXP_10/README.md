@@ -1,96 +1,192 @@
-# Experiment 9 - Spring Boot JWT Authentication
+# Experiment 10 - # WebSocket Chat Application
 
-## Aim
-- To build a comprehensive Spring Boot REST API with JWT-based authentication and authorization.
-- To implement user registration and login with password encryption using BCrypt.
-- To secure API endpoints using Spring Security and JWT tokens.
-- To integrate JPA/Hibernate ORM with MySQL database for persistent user storage.
-- To demonstrate role-based security filters and token validation.
+## Overview
 
-## Tools & Libraries
-- **Spring Boot** 4.0.2 (Web, Security, Data JPA, DevTools)
-- **Spring Security** with JWT (jjwt-api, jjwt-impl, jjwt-jackson 0.13.0)
-- **MySQL** (Connector/J)
-- **Hibernate** (JPA ORM with DDL auto-schema creation)
-- **Lombok** (Annotations for boilerplate code reduction)
-- **Maven** (Build tool with Wrapper)
-- **Java** 17+ (Compiled with Release 17)
+This project is a real-time chat application built using:
+
+* **Frontend:** React (Vite)
+* **Backend:** Spring Boot with WebSocket (STOMP over SockJS)
+
+It allows multiple users to send and receive messages instantly using a publish-subscribe messaging model.
+
+---
+
+## Features
+
+* Real-time messaging using WebSockets
+* Username-based message identification
+* Automatic message updates without page refresh
+* Enter key + button support for sending messages
+* Reconnection support via STOMP client
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* sockjs-client
+* @stomp/stompjs
+
+### Backend
+
+* Spring Boot
+* Spring WebSocket
+* STOMP Protocol
+
+---
 
 ## Project Structure
 
-```
-src/main/java/com/kazurite/exp9/
-├── exp9Application.java
-├── config/
-│   └── SecurityConfig.java
-├── Controller/
-│   ├── UserController.java
-│   ├── StudentController.java
-│   └── HelloController.java
-├── Entity/
-│   ├── UserEntity.java
-│   ├── UserPrincipal.java
-│   └── Student.java
-├── Service/
-│   ├── UserService.java
-│   ├── MyUserDetailService.java
-│   └── JwtService.java
-├── Repository/
-│   └── UserRepository.java
-└── Filter/
-    └── JwtFilter.java
+### Frontend (React)
 
-src/main/resources/
-└── application.properties
+```
+src/
+ ├── Components/
+ │   ├── Chat.jsx
+ │   ├── MessageInput.jsx
+ │   └── MessageList.jsx
+ ├── App.jsx
+ └── App.css
 ```
 
-## Description
+### Backend (Spring Boot)
 
-### Core Features
+```
+com.aml2b.Demo_WebSocket/
+ └── DemoWebSocketApplication.java
+```
 
-#### 1. **User Authentication (Register/Login)**
-- `POST /register` - Creates a new user with BCrypt-encrypted password
-  - Auto-generates user ID (IDENTITY strategy)
-  - Stores username and encrypted password in MySQL `tbl_users` table
-  
-- `POST /login` - Authenticates user and returns JWT token
-  - Validates credentials against bcrypted password
-  - Generates time-limited JWT (expires in 30 hours)
-  - Token includes username as subject claim
+---
 
-#### 2. **JWT Token Handling**
-- **Generation**: Signed JWT with HmacSHA256 algorithm
-- **Validation**: Checks token expiration and signature
-- **Extraction**: Parses username and expiration from claims
-- **Filter Chain**: `JwtFilter` validates token on every request
-  - Checks Authorization header for "Bearer " prefix
-  - Sets authenticated principal in SecurityContext
-  - Bypasses filter for public endpoints (`/`, `/register`, `/login`)
+## How It Works
 
-#### 3. **Spring Security Configuration**
-- CSRF disabled (stateless API)
-- Session management in STATELESS mode
-- Custom `AuthenticationProvider` with DaoAuthenticationProvider
-- BCryptPasswordEncoder with strength 12
-- Public endpoints configured via `permitAll()`
-- JWT filter added before default UsernamePasswordAuthenticationFilter
+1. Client connects to WebSocket endpoint:
 
-#### 4. **Database & ORM**
-- MySQL database: `exp9`
-- Table: `tbl_users` (auto-created on startup)
-- Columns: `id` (auto-increment PK), `username`, `password`
-- JPA DDL mode: `create-drop` (recreates tables on each restart)
+   ```
+   http://localhost:8080/ws
+   ```
 
-#### 5. **API Endpoints**
+2. Messages are sent to:
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | `/` | No | Public greeting with session ID |
-| POST | `/register` | No | Register new user |
-| POST | `/login` | No | Login and get JWT token |
-| GET | `/students` | REQUIRED | Retrieve hardcoded student list |
-| POST | `/students` | REQUIRED | Add student to in-memory list |
+   ```
+   /app/chat
+   ```
 
+3. Messages are broadcast to:
+
+   ```
+   /topic/messages
+   ```
+
+4. All connected clients subscribed to `/topic/messages` receive updates instantly.
+
+---
+
+## Installation & Setup
+
+### 1. Clone the repository
+
+```
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+---
+
+### 2. Backend Setup (Spring Boot)
+
+Make sure you have:
+
+* Java 17 or 21
+* Maven installed
+
+Run:
+
+```
+mvn clean install
+mvn spring-boot:run
+```
+
+Server runs on:
+
+```
+http://localhost:8080
+```
+
+---
+
+### 3. Frontend Setup (React)
+
+Navigate to frontend folder:
+
+```
+cd <frontend-folder>
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Run development server:
+
+```
+npm run dev
+```
+
+App runs on:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Usage
+
+1. Enter your username
+2. Type a message
+3. Press **Enter** or click **Send**
+4. Messages appear in real-time for all connected users
+
+---
+
+## Important Notes
+
+* Backend must be running before frontend connects
+* WebSocket endpoint must match (`/ws`)
+* If connection fails, check CORS and port configuration
+* Do not run backend using raw `java` command — use Maven
+
+---
+
+## Limitations
+
+* No authentication (anyone can join with any name)
+* No message persistence (refresh = messages lost)
+* No user session handling
+* No scalability handling (basic implementation)
+
+---
+
+## Future Improvements
+
+* Add authentication (JWT / session-based)
+* Store messages in database
+* Add private messaging
+* Improve UI/UX
+* Add typing indicators
+* Deploy backend and frontend
+
+---
+
+## Author
+
+Aditya
 
 ## Screenshots
 
